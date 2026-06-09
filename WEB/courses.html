@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>选课指南</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0ede8 0%, #e2dcd0 100%);
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+
+        /* 外层大框 */
+        .outer-frame {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fffef7;
+            border-radius: 40px;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            border: 1px solid #e8dccc;
+        }
+
+        /* 顶部装饰条 */
+        .top-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #2c5f2d, #7faa5f, #2c5f2d);
+        }
+
+        /* 内容区：只提供内边距，不修改任何文字 */
+        .content-box {
+            padding: 2rem 2rem 2.2rem;
+        }
+
+        /* 保持原有文字样式，不修改任何内容 */
+        h1 {
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+        h2 {
+            margin: 0.8rem 0;
+        }
+        h2[style*="text-align: center"] {
+            text-align: center;
+        }
+        p {
+            margin: 0.7rem 0;
+            line-height: 1.5;
+        }
+
+        /* 用框把原有段落/标题分组框起来，但不增加文字 */
+        .box-group {
+            background: #faf8f2;
+            border-radius: 28px;
+            padding: 0.2rem 1.5rem;
+            margin: 1.2rem 0;
+            border: 1px solid #e2d8c4;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .highlight-box {
+            background: #fff6e8;
+            border-left: 6px solid #e67e22;
+            border-radius: 20px;
+            padding: 0.2rem 1.3rem;
+            margin: 1rem 0;
+        }
+
+        .warning-box {
+            background: #fff0f0;
+            border-radius: 20px;
+            padding: 0.2rem 1.3rem;
+            margin: 1rem 0;
+            border: 1px solid #f0c0c0;
+        }
+
+        .process-box {
+            background: #f2f6ef;
+            border-radius: 24px;
+            padding: 0.2rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #cfdec5;
+        }
+
+        /* 分割线装饰 */
+        hr {
+            margin: 1.2rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9bc9e, transparent);
+        }
+
+        @media (max-width: 600px) {
+            .content-box {
+                padding: 1.3rem;
+            }
+            .box-group, .highlight-box, .warning-box, .process-box {
+                padding: 0.1rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="outer-frame">
+    <div class="top-bar"></div>
+    <div class="content-box">
+        <!-- 以下所有文字均为原始内容，一字未改。只通过外层div框进行视觉包裹 -->
+
+        <!-- 主标题区域框 -->
+        <div class="box-group">
+            <h1 style="text-align: center;">
+              选课指南
+              （想要知道某个老师的评价，可以去微信小程序的深圳淘课或者猹话会寻找）
+            </h1>
+        </div>
+
+        <!-- 培养方案提示框 -->
+        <div class="box-group">
+            <h2 style="text-align: center;">所有要修的课程均可在培养方案内找到！</h2>
+        </div>
+
+        <!-- 血的教训 + 高数大英警告 放在一起框 -->
+        <div class="warning-box">
+            <h2 style="text-align: center;">！！！血的教训！！<h2>
+            <h2 style="text-align: center;">！！！不要把高数和大英放到一起！！！</h2>
+        </div>
+
+        <!-- 选课流程区域框 -->
+        <div class="process-box">
+            <h2>选课流程</h2>
+            <p>
+              选课开放后，有两轮抽签选课（最好先选好mooc和体育课） </p>
+            <p>抽签后就是惨烈的“先到先得”抢课了</p>
+            <p>最后面是放位阶段，也是先到先得</p>
+            <p>||  如果最后依旧没有选到心仪的课程，可去找老师加位</p>
+            <p>||  加位流程：打印加位表，找到老师签字，交到对应的教务处（有一定的几率加位不上，可以考虑找一个没那么热门的老师加位，成功率高一些）</p>
+       
+       <p></p> 
+           <h3>mooc备忘录</h3>
+            <table border="4">
+        <tr>
+            <th>类型</th>
+            <th>课程名称</th>
+        </tr>
+        <tr>
+            <td>mooc</td>
+            <td>大学生心理健康</td>
+        </tr>
+        <tr>
+            <td>mooc</td>
+            <td>大学生国家安全教育</td>
+        </tr>
+        <tr>
+            <td>mooc</td>
+            <td>军事理论</td>
+        </tr>
+        <tr>
+            <td>mooc</td>
+            <td>走在前列的广东实践</td>
+        </tr>
+    </table>
+         </div>
+
+        <!-- 老师推荐区域框 -->
+        <div class="box-group">
+            <P>高数老师推荐：李兰，王远</P>
+            <P>不推荐的高数老师：李松晨</P>
+        </div>
+        <div class="box-group">
+            <P>大英老师推荐：李黎，刘智，吴敏</P>
+            <P>不太推荐的大英老师：李玲（模式像高中，很严，英语想要有强度学习的找她）</P>
+        </div>
+        <div class="box-group">
+            <P>体育课课程推荐：羽毛球，乒乓球（都是室内，不用晒太阳）</P>
+            <P>足球课对女生很宽松，走投无路的可以考虑</P>
+            
+        </div>
+
+        <!-- 浅色分割线（仅装饰，不包含文字） -->
+        <hr>
+    </div>
+</div>
+</body>
+</html>
