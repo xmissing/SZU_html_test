@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>常用电话汇总</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #e8ecf0 0%, #d5dce3 100%);
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1rem;
+            line-height: 1.55;
+            min-height: 100vh;
+        }
+
+        .master-card {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 48px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .hero-deco {
+            background: linear-gradient(90deg, #2c6b8f, #5f9ec0, #7fb8d4);
+            height: 10px;
+            width: 100%;
+        }
+
+        .content-core {
+            padding: 2rem 2.2rem 2.5rem;
+        }
+
+        /* 标题样式 */
+        .page-title {
+            text-align: center;
+            color: #2c6b8f;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #e8eef4;
+        }
+
+        /* 电话列表容器 */
+        .phone-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+            margin-top: 0.5rem;
+        }
+
+        .phone-item {
+            background: #f6f9fc;
+            border-radius: 16px;
+            padding: 0.6rem 1rem;
+            border: 1px solid #e4ebf2;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .phone-item:hover {
+            background: #eef3fc;
+            border-color: #5f9ec0;
+        }
+
+        .phone-item .label {
+            color: #3a6b8f;
+            font-weight: 500;
+        }
+
+        .phone-item .number {
+            color: #1e4a6f;
+            font-weight: 600;
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin-left: auto;
+            letter-spacing: 0.5px;
+        }
+
+        /* 装饰标签行 */
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: #dcebf3;
+            color: #2c6b8f;
+            border-radius: 50px;
+            padding: 4px 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        @media (max-width: 650px) {
+            .content-core {
+                padding: 1.5rem;
+            }
+            .phone-list {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .phone-item {
+                padding: 0.5rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="master-card">
+    <div class="hero-deco"></div>
+    <div class="content-core">
+        <!-- 装饰标签行 -->
+        <div class="badge-row">
+            <div class="badge">📞 深大常用电话</div>
+            <div class="badge">🏫 粤海校区</div>
+         
+        </div>
+
+        <!-- ========= 以下为原始文字，一字未改 ========= -->
+        <div class="page-title">常用电话汇总</div>
+
+        <div class="phone-list">
+            <div class="phone-item"><span class="label">1. 校医院：</span><span class="number">26537163</span></div>
+            <div class="phone-item"><span class="label">2. 值班室：</span><span class="number">26534058</span></div>
+            <div class="phone-item"><span class="label">3. 消杀中心：</span><span class="number">26537189</span></div>
+            <div class="phone-item"><span class="label">4. 治安科：</span><span class="number">26537119</span></div>
+            <div class="phone-item"><span class="label">5. 移动报修：</span><span class="number">18476328678</span></div>
+            <div class="phone-item"><span class="label">6. 宿舍报修：</span><span class="number">26732006</span></div>
+            <div class="phone-item"><span class="label">7. 宿舍调整：</span><span class="number">26537141</span></div>
+            <div class="phone-item"><span class="label">8. 电费查询：</span><span class="number">26537164</span></div>
+            <div class="phone-item"><span class="label">9. 空调报修：</span><span class="number">26732006</span></div>
+            <div class="phone-item"><span class="label">10. 电信报修：</span><span class="number">26414134</span></div>
+            <div class="phone-item"><span class="label">11. 读卡器：</span><span class="number">26535339</span></div>
+            <div class="phone-item"><span class="label">12. 热水供应：</span><span class="number">26732006</span></div>
+            <div class="phone-item"><span class="label">13. 园林报修：</span><span class="number">26534179</span></div>
+            <div class="phone-item"><span class="label">14. 门禁报修：</span><span class="number">18718677020</span></div>
+            <div class="phone-item"><span class="label">15. 电梯报修：</span><span class="number">26732006</span></div>
+        </div>
+        <!-- ========= 原始文字结束 ========= -->
+    </div>
+</div>
+</body>
+</html>
