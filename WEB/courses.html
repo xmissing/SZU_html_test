@@ -12,98 +12,182 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f0ede8 0%, #e2dcd0 100%);
+            background: #e8e0d6;
             font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 2rem 1rem;
+            padding: 1.2rem 0.8rem;
             min-height: 100vh;
+            font-size: 13px;
         }
 
-        /* 外层大框 */
         .outer-frame {
             max-width: 1000px;
             margin: 0 auto;
-            background: #fffef7;
-            border-radius: 40px;
-            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.25);
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 25px 40px -16px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            border: 1px solid #e8dccc;
         }
 
-        /* 顶部装饰条 */
         .top-bar {
             height: 8px;
-            background: linear-gradient(90deg, #2c5f2d, #7faa5f, #2c5f2d);
+            background: linear-gradient(135deg, #1a6b3c, #4caf50, #8bc34a);
         }
 
-        /* 内容区：只提供内边距，不修改任何文字 */
         .content-box {
-            padding: 2rem 2rem 2.2rem;
+            padding: 1.5rem 1.8rem 2rem;
         }
 
-        /* 保持原有文字样式，不修改任何内容 */
+        /* 所有字体整体缩小 */
         h1 {
             text-align: center;
-            margin: 0.5rem 0;
+            margin: 0.1rem 0 0.3rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a4d2e;
+            letter-spacing: 0.3px;
         }
+        h1 small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #5a7a5a;
+            display: block;
+            margin-top: 2px;
+        }
+
         h2 {
-            margin: 0.8rem 0;
+            margin: 0.4rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f4f7a;
         }
+
         h2[style*="text-align: center"] {
             text-align: center;
         }
+
+        h3 {
+            margin: 0.6rem 0 0.3rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2d6b4a;
+            border-bottom: 2px solid #c8dfc0;
+            padding-bottom: 3px;
+        }
+
         p {
-            margin: 0.7rem 0;
-            line-height: 1.5;
+            margin: 0.4rem 0;
+            line-height: 1.6;
+            font-size: 0.85rem;
+            color: #2c3e3a;
         }
 
-        /* 用框把原有段落/标题分组框起来，但不增加文字 */
+        table {
+            font-size: 0.8rem;
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            margin: 0.4rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        th {
+            background: #2d5a3a;
+            color: white;
+            font-weight: 600;
+            padding: 7px 12px;
+            text-align: left;
+            font-size: 0.8rem;
+        }
+        td {
+            background: #f8faf5;
+            padding: 7px 12px;
+            border-bottom: 1px solid #e0e8d8;
+            font-size: 0.8rem;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr td:first-child {
+            font-weight: 600;
+            color: #1a5a3a;
+        }
+
         .box-group {
-            background: #faf8f2;
-            border-radius: 28px;
-            padding: 0.2rem 1.5rem;
-            margin: 1.2rem 0;
-            border: 1px solid #e2d8c4;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-        }
-
-        .highlight-box {
-            background: #fff6e8;
-            border-left: 6px solid #e67e22;
+            background: #f9faf5;
             border-radius: 20px;
-            padding: 0.2rem 1.3rem;
-            margin: 1rem 0;
+            padding: 0.5rem 1.4rem 0.7rem;
+            margin: 0.8rem 0;
+            border: 1px solid #d8dcc8;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
         }
 
         .warning-box {
-            background: #fff0f0;
+            background: #fef2ef;
             border-radius: 20px;
-            padding: 0.2rem 1.3rem;
-            margin: 1rem 0;
-            border: 1px solid #f0c0c0;
+            padding: 0.5rem 1.4rem 0.7rem;
+            margin: 0.8rem 0;
+            border-left: 6px solid #d94a4a;
+            border-right: 1px solid #f0d0c8;
+            border-top: 1px solid #f0d0c8;
+            border-bottom: 1px solid #f0d0c8;
+            box-shadow: 0 3px 14px rgba(200, 60, 40, 0.06);
         }
 
         .process-box {
-            background: #f2f6ef;
-            border-radius: 24px;
-            padding: 0.2rem 1.5rem;
-            margin: 1rem 0;
-            border: 1px solid #cfdec5;
+            background: #f2f8ef;
+            border-radius: 20px;
+            padding: 0.5rem 1.4rem 0.7rem;
+            margin: 0.8rem 0;
+            border-left: 6px solid #3b8f5a;
+            border-right: 1px solid #c8e0c0;
+            border-top: 1px solid #c8e0c0;
+            border-bottom: 1px solid #c8e0c0;
+            box-shadow: 0 3px 14px rgba(40, 120, 60, 0.06);
         }
 
-        /* 分割线装饰 */
         hr {
-            margin: 1.2rem 0;
+            margin: 1.2rem 0 0.6rem;
             border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c9bc9e, transparent);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #b0c0a0, #7a9a7a, #b0c0a0, transparent);
+            border-radius: 4px;
         }
 
         @media (max-width: 600px) {
-            .content-box {
-                padding: 1.3rem;
+            body {
+                padding: 0.8rem 0.5rem;
+                font-size: 12px;
             }
-            .box-group, .highlight-box, .warning-box, .process-box {
-                padding: 0.1rem 1rem;
+            .content-box {
+                padding: 1rem 0.8rem 1.5rem;
+            }
+            .box-group, .warning-box, .process-box {
+                padding: 0.3rem 1rem 0.5rem;
+                margin: 0.6rem 0;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 1.2rem;
+            }
+            h1 small {
+                font-size: 0.7rem;
+            }
+            h2 {
+                font-size: 0.95rem;
+            }
+            h3 {
+                font-size: 0.85rem;
+            }
+            p {
+                font-size: 0.78rem;
+            }
+            table {
+                font-size: 0.7rem;
+            }
+            th, td {
+                padding: 5px 8px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -112,83 +196,74 @@
 <div class="outer-frame">
     <div class="top-bar"></div>
     <div class="content-box">
-        <!-- 以下所有文字均为原始内容，一字未改。只通过外层div框进行视觉包裹 -->
 
-        <!-- 主标题区域框 -->
         <div class="box-group">
             <h1 style="text-align: center;">
               选课指南
-              （想要知道某个老师的评价，可以去微信小程序的深圳淘课或者猹话会寻找）
+              <small>（想要知道某个老师的评价，可以去微信小程序的深圳淘课或者猹话会寻找）</small>
             </h1>
         </div>
 
-        <!-- 培养方案提示框 -->
         <div class="box-group">
             <h2 style="text-align: center;">所有要修的课程均可在培养方案内找到！</h2>
         </div>
 
-        <!-- 血的教训 + 高数大英警告 放在一起框 -->
         <div class="warning-box">
-            <h2 style="text-align: center;">！！！血的教训！！<h2>
+            <h2 style="text-align: center;">！！！血的教训！！</h2>
             <h2 style="text-align: center;">！！！不要把高数和大英放到一起！！！</h2>
         </div>
 
-        <!-- 选课流程区域框 -->
         <div class="process-box">
             <h2>选课流程</h2>
-            <p>
-              选课开放后，有两轮抽签选课（最好先选好mooc和体育课） </p>
+            <p>选课开放后，有两轮抽签选课（最好先选好mooc和体育课）</p>
             <p>抽签后就是惨烈的“先到先得”抢课了</p>
             <p>最后面是放位阶段，也是先到先得</p>
             <p>||  如果最后依旧没有选到心仪的课程，可去找老师加位</p>
             <p>||  加位流程：打印加位表，找到老师签字，交到对应的教务处（有一定的几率加位不上，可以考虑找一个没那么热门的老师加位，成功率高一些）</p>
        
-       <p></p> 
-           <h3>mooc备忘录</h3>
+            <p></p> 
+            <h3>mooc备忘录</h3>
             <table border="4">
-        <tr>
-            <th>类型</th>
-            <th>课程名称</th>
-        </tr>
-        <tr>
-            <td>mooc</td>
-            <td>大学生心理健康</td>
-        </tr>
-        <tr>
-            <td>mooc</td>
-            <td>大学生国家安全教育</td>
-        </tr>
-        <tr>
-            <td>mooc</td>
-            <td>军事理论</td>
-        </tr>
-        <tr>
-            <td>mooc</td>
-            <td>走在前列的广东实践</td>
-        </tr>
                 <tr>
-            <td>mooc</td>
-            <td>大学生劳动</td>
-        </tr>
-    </table>
-         </div>
+                    <th>类型</th>
+                    <th>课程名称</th>
+                </tr>
+                <tr>
+                    <td>mooc</td>
+                    <td>大学生心理健康</td>
+                </tr>
+                <tr>
+                    <td>mooc</td>
+                    <td>大学生国家安全教育</td>
+                </tr>
+                <tr>
+                    <td>mooc</td>
+                    <td>军事理论</td>
+                </tr>
+                <tr>
+                    <td>mooc</td>
+                    <td>走在前列的广东实践</td>
+                </tr>
+                <tr>
+                    <td>mooc</td>
+                    <td>大学生劳动</td>
+                </tr>
+            </table>
+        </div>
 
-        <!-- 老师推荐区域框 -->
         <div class="box-group">
-            <P>高数老师推荐：李兰，王远</P>
-            <P>不推荐的高数老师：李松晨</P>
+            <p>高数老师推荐：李兰，王远</p>
+            <p>不推荐的高数老师：李松臣</p>
         </div>
         <div class="box-group">
-            <P>大英老师推荐：李黎，刘智，吴敏</P>
-            <P>不太推荐的大英老师：李玲（模式像高中，很严，英语想要有强度学习的找她）</P>
+            <p>大英老师推荐：李黎，刘智，吴敏</p>
+            <p>不太推荐的大英老师：李玲（模式像高中，很严，英语想要有强度学习的找她）</p>
         </div>
         <div class="box-group">
-            <P>体育课课程推荐：羽毛球，乒乓球（都是室内，不用晒太阳）</P>
-            <P>足球课对女生很宽松，走投无路的可以考虑</P>
-            
+            <p>体育课课程推荐：健身、羽毛球，乒乓球（都是室内，不用晒太阳）</p>
+            <p>足球课对女生很宽松，走投无路的可以考虑</p>
         </div>
 
-        <!-- 浅色分割线（仅装饰，不包含文字） -->
         <hr>
     </div>
 </div>
