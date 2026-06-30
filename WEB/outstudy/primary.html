@@ -4,170 +4,81 @@
     <meta charset="UTF-8">
     <title>入学须知 · 深大生存指南</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(145deg, #e8f0f5 0%, #d4e0e8 100%);
-            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 2rem 1rem;
-            line-height: 1.55;
-            color: #1a3a4f;
-        }
-
-        .master-card {
-            max-width: 950px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 48px;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .hero-deco {
-            background: linear-gradient(90deg, #005b8f, #2c8fbd, #5db0d4);
-            height: 10px;
-            width: 100%;
-        }
-
-        .content-core {
-            padding: 2rem 2.2rem 2.5rem;
-        }
-
-        /* 文字颜色 */
-        h2 {
-            color: #005b8f;
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            border-left: 5px solid #2c8fbd;
-            padding-left: 1rem;
-        }
-
-        h3 {
-            color: #1a6b8a;
-            margin: 1.2rem 0 0.8rem;
-            font-size: 1.4rem;
-            display: inline-block;
-            background: #eaf4f9;
-            padding: 0.2rem 1.2rem;
-            border-radius: 30px;
-        }
-
-        p {
-            margin: 0.6rem 0;
-            color: #2c4a5e;
-            line-height: 1.55;
-            padding-left: 0.5rem;
-        }
-
-        /* 用框包裹每条须知 */
-        .tip-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin: 1rem 0;
-        }
-
-        .tip-item {
-            background: #f5fafd;
-            border-radius: 20px;
-            padding: 0.6rem 1.2rem;
-            border: 1px solid #d4e5ef;
-            transition: all 0.2s;
-        }
-
-        .tip-item p {
-            margin: 0;
-            padding-left: 0;
-        }
-
-        /* 不同序号轻微颜色区分 */
-        .tip-item:nth-child(odd) {
-            background: #fefef7;
-        }
-
-        .tip-item:nth-child(even) {
-            background: #f4f9fe;
-        }
-
-        /* 装饰标签 */
-        .badge-row {
-            display: flex;
-            justify-content: flex-start;
-            gap: 12px;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
-        }
-        .badge {
-            background: #d4e8f2;
-            color: #005b8f;
-            border-radius: 50px;
-            padding: 4px 16px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        hr {
-            margin: 1rem 0;
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c0d8e8, transparent);
-        }
-
-        @media (max-width: 600px) {
-            .content-core {
-                padding: 1.3rem;
-            }
-            .tip-item {
-                padding: 0.5rem 1rem;
-            }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/design-system.css">
 </head>
 <body>
 <div class="master-card">
-    <div class="hero-deco"></div>
-    <div class="content-core">
-        <!-- 装饰标签行（不包含文字内容，仅视觉） -->
-        <div class="badge-row">
-            <div class="badge">🎓 新生必读</div>
-            <div class="badge">📍 粤海校区特辑</div>
-            <div class="badge">💡 学长学姐血泪经验</div>
-        </div>
+    <div class="tape-deco-top"></div>
 
-        <!-- ========= 以下为原始文字，一字未改 ========= -->
-        <h2>初入深大须知：</h2>
-        <h3>粤海篇</h3>
-
-        <div class="tip-list">
-            <div class="tip-item"><p>/0、先拿校园卡到听山门口的刷卡机（柜子旁边的墙上）刷一下，就可以当水卡了</p></div>
-            <div class="tip-item"><p>/1、校园卡里可以不用充钱，可以用手机支付（推荐开启刷掌），校园卡当水卡用</p></div>
-            <div class="tip-item"><p>/2、路边的学长学姐可能叫你买校园网，不管你买不买，去顺一条网线！</p></div>
-            <div class="tip-item"><p>/3、要是有本专业的学长学姐批量低价卖书，建议即刻入手，手慢无</p></div>
-            <div class="tip-item"><p>/4、先去南区看看治理楼L1、L2、L3都是在哪！后面上水课抢后排有大用处！</p></div>
-            <div class="tip-item"><p>/5、一定要熟悉公文通和企业微信的工作台</p></div>
-            <div class="tip-item"><p>/6、校园的小巴很方便，坐一次只需要一块钱，可以刷掌或者校园码</p></div>
-            <div class="tip-item"><p>/7、下载校园VPN，便于手机登录内部网
-                <a href="https://www1.szu.edu.cn/nc/view.asp?id=631">点击跳转</a>
-            </p>
-        </div>
-            <div class="tip-item"><p>/8、去宿舍楼下找宿管进行人脸录入（丽湖校区的是开学前几天线上自己录人脸，会有通知）</p></div>
-        </div>
-        <div class="tip-item"><p>
-            /9、开学没几天会有一个所谓的大学英语分班考试（分为A、B班），如果你对英语有强烈兴趣并且不怕后续有一堆事情，
-            可以考虑去考A班（目前不知道A班除了折磨自己有什么用），其余的一概推荐直接旷掉考试（去B班）</p></div>
-        
-        </div>
-        
-        </div>
-        </div>
-        <!-- ========= 原始文字结束 ========= -->
+    <div class="header-block">
+        <h1>初入深大须知</h1>
     </div>
+
+    <!-- 装饰标签行（不包含文字内容，仅视觉） -->
+    <div class="badge-row">
+        <div class="badge">🎓 新生必读</div>
+        <div class="badge">📍 粤海校区特辑</div>
+        <div class="badge">💡 学长学姐血泪经验</div>
+    </div>
+
+    <!-- ========= 以下为原始文字，一字未改 ========= -->
+    <div class="section-block" data-tape="blue">
+        <span class="pin"></span>
+        <span class="tape-strip"></span>
+        <h3>粤海篇 · 新生入学十件事</h3>
+        <ol class="step-list">
+            <li class="step-item">
+                <span class="step-num">0</span>
+                <div class="step-body">先拿校园卡到听山门口的刷卡机（柜子旁边的墙上）刷一下，就可以当水卡了</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">1</span>
+                <div class="step-body">校园卡里可以不用充钱，可以用<span class="hl">手机支付</span>（推荐开启<span class="hl">刷掌</span>），校园卡当水卡用</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">2</span>
+                <div class="step-body">路边的学长学姐可能叫你买校园网，不管你买不买，去<span class="hl-urgent">顺一条网线！</span></div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">3</span>
+                <div class="step-body">要是有本专业的学长学姐批量低价卖书，建议即刻入手，手慢无</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">4</span>
+                <div class="step-body">先去南区看看治理楼<span class="hl">L1、L2、L3</span>都是在哪！后面上水课抢后排有大用处！</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">5</span>
+                <div class="step-body">一定要熟悉<span class="hl">公文通</span>和<span class="hl">企业微信</span>的工作台</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">6</span>
+                <div class="step-body">校园的小巴很方便，坐一次只需要<span class="hl">一块钱</span>，可以刷掌或者校园码</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">7</span>
+                <div class="step-body">
+                    下载校园VPN，便于手机登录内部网
+                    <br>
+                    <a class="btn-jump" href="https://www1.szu.edu.cn/nc/view.asp?id=631" target="_blank" rel="noopener noreferrer">点击跳转 szu.edu.cn VPN 指南</a>
+                </div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">8</span>
+                <div class="step-body">去宿舍楼下找宿管进行<span class="step-label">人脸录入</span>（丽湖校区的是开学前几天线上自己录人脸，会有通知）</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">9</span>
+                <div class="step-body">
+                    开学没几天会有一个所谓的<span class="step-label">大学英语分班考试</span>（分为A、B班），如果你对英语有强烈兴趣并且不怕后续有一堆事情，可以考虑去考A班（目前不知道A班除了折磨自己有什么用），其余的一概推荐直接<span class="hl-urgent">旷掉考试</span>（去B班）
+                </div>
+            </li>
+        </ol>
+    </div>
+    <!-- ========= 原始文字结束 ========= -->
 </div>
 </body>
 </html>
