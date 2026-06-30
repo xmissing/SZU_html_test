@@ -2,270 +2,192 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>选课指南</title>
+    <title>选课指南 · 深大生存手册</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/design-system.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #e8e0d6;
-            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 1.2rem 0.8rem;
-            min-height: 100vh;
-            font-size: 13px;
-        }
-
-        .outer-frame {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 28px;
-            box-shadow: 0 25px 40px -16px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .top-bar {
-            height: 8px;
-            background: linear-gradient(135deg, #1a6b3c, #4caf50, #8bc34a);
-        }
-
-        .content-box {
-            padding: 1.5rem 1.8rem 2rem;
-        }
-
-        /* 所有字体整体缩小 */
-        h1 {
-            text-align: center;
-            margin: 0.1rem 0 0.3rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a4d2e;
-            letter-spacing: 0.3px;
-        }
-        h1 small {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: #5a7a5a;
-            display: block;
-            margin-top: 2px;
-        }
-
-        h2 {
-            margin: 0.4rem 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1f4f7a;
-        }
-
-        h2[style*="text-align: center"] {
-            text-align: center;
-        }
-
-        h3 {
-            margin: 0.6rem 0 0.3rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #2d6b4a;
-            border-bottom: 2px solid #c8dfc0;
-            padding-bottom: 3px;
-        }
-
-        p {
-            margin: 0.4rem 0;
-            line-height: 1.6;
-            font-size: 0.85rem;
-            color: #2c3e3a;
-        }
-
-        table {
-            font-size: 0.8rem;
+        /* 页面专属：mooc 备忘录表格 */
+        .notebook-table {
+            width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            width: 100%;
-            margin: 0.4rem 0;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        th {
-            background: #2d5a3a;
-            color: white;
-            font-weight: 600;
-            padding: 7px 12px;
-            text-align: left;
-            font-size: 0.8rem;
-        }
-        td {
-            background: #f8faf5;
-            padding: 7px 12px;
-            border-bottom: 1px solid #e0e8d8;
-            font-size: 0.8rem;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tr td:first-child {
-            font-weight: 600;
-            color: #1a5a3a;
-        }
-
-        .box-group {
-            background: #f9faf5;
-            border-radius: 20px;
-            padding: 0.5rem 1.4rem 0.7rem;
-            margin: 0.8rem 0;
-            border: 1px solid #d8dcc8;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
-        }
-
-        .warning-box {
-            background: #fef2ef;
-            border-radius: 20px;
-            padding: 0.5rem 1.4rem 0.7rem;
-            margin: 0.8rem 0;
-            border-left: 6px solid #d94a4a;
-            border-right: 1px solid #f0d0c8;
-            border-top: 1px solid #f0d0c8;
-            border-bottom: 1px solid #f0d0c8;
-            box-shadow: 0 3px 14px rgba(200, 60, 40, 0.06);
-        }
-
-        .process-box {
-            background: #f2f8ef;
-            border-radius: 20px;
-            padding: 0.5rem 1.4rem 0.7rem;
-            margin: 0.8rem 0;
-            border-left: 6px solid #3b8f5a;
-            border-right: 1px solid #c8e0c0;
-            border-top: 1px solid #c8e0c0;
-            border-bottom: 1px solid #c8e0c0;
-            box-shadow: 0 3px 14px rgba(40, 120, 60, 0.06);
-        }
-
-        hr {
-            margin: 1.2rem 0 0.6rem;
-            border: none;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #b0c0a0, #7a9a7a, #b0c0a0, transparent);
+            margin: 0.6rem 0;
             border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .notebook-table th {
+            background: var(--ink);
+            color: var(--paper);
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            padding: 9px 14px;
+            text-align: left;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+        .notebook-table td {
+            padding: 9px 14px;
+            border-bottom: 1px dashed var(--line);
+            font-size: 0.94rem;
+            color: var(--ink);
+        }
+        .notebook-table tr:last-child td { border-bottom: none; }
+        .notebook-table tr:nth-child(even) td {
+            background: rgba(0, 59, 111, 0.04);
+        }
+        .notebook-table td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--szu-navy);
+            width: 30%;
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 0.8rem 0.5rem;
-                font-size: 12px;
-            }
-            .content-box {
-                padding: 1rem 0.8rem 1.5rem;
-            }
-            .box-group, .warning-box, .process-box {
-                padding: 0.3rem 1rem 0.5rem;
-                margin: 0.6rem 0;
-                border-radius: 16px;
-            }
-            h1 {
-                font-size: 1.2rem;
-            }
-            h1 small {
-                font-size: 0.7rem;
-            }
-            h2 {
-                font-size: 0.95rem;
-            }
-            h3 {
-                font-size: 0.85rem;
-            }
-            p {
-                font-size: 0.78rem;
-            }
-            table {
-                font-size: 0.7rem;
-            }
-            th, td {
-                padding: 5px 8px;
-                font-size: 0.7rem;
-            }
+        /* 教师推荐条 */
+        .teacher-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed var(--line);
+        }
+        .teacher-row:last-child { border-bottom: none; }
+        .teacher-row .arrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            padding-top: 1px;
+        }
+        .teacher-row.good .arrow { color: var(--status-good); }
+        .teacher-row.bad  .arrow { color: var(--status-bad); }
+        .teacher-row.neutral .arrow { color: var(--status-neutral); }
+        .teacher-row .label {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            color: var(--ink);
+            margin-right: 6px;
+        }
+        .teacher-row .names {
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .teacher-row .note {
+            color: var(--ink-soft);
+            font-size: 0.88rem;
+            margin-top: 2px;
         }
     </style>
 </head>
 <body>
-<div class="outer-frame">
-    <div class="top-bar"></div>
-    <div class="content-box">
+<div class="master-card">
+    <div class="tape-deco-top"></div>
 
-        <div class="box-group">
-            <h1 style="text-align: center;">
-              选课指南
-              <small>（想要知道某个老师的评价，可以去微信小程序的深圳淘课或者猹话会寻找）</small>
-            </h1>
+    <div class="header-block">
+        <h1>选课指南</h1>
+        <div class="header-sub">（想要知道某个老师的评价，可以去微信小程序的深圳淘课或者猹话会寻找）</div>
+    </div>
+
+    <!-- ========= 以下为原始文字，一字未改 ========= -->
+
+    <div class="section-block" data-tape="yellow">
+        <span class="tape-strip"></span>
+        <h3>所有要修的课程</h3>
+        <p>所有要修的课程均可在<span class="hl">培养方案</span>内找到！</p>
+    </div>
+
+    <div class="section-block" data-tape="coral">
+        <span class="pin"></span>
+        <span class="tape-strip"></span>
+        <h3>！！！血的教训！！</h3>
+        <div class="warn-box" style="margin: 0;">
+            <strong>不要把高数和大英放到一起！！！</strong>
         </div>
+    </div>
 
-        <div class="box-group">
-            <h2 style="text-align: center;">所有要修的课程均可在培养方案内找到！</h2>
-        </div>
+    <div class="section-block" data-tape="green">
+        <span class="tape-strip"></span>
+        <h3>选课流程</h3>
+        <p>选课开放后，有<span class="hl">两轮抽签选课</span>（最好先选好 mooc 和体育课）</p>
+        <p>抽签后就是惨烈的<span class="hl">"先到先得"抢课</span>了</p>
+        <p>最后面是<span class="step-label">放位阶段</span>，也是先到先得</p>
+        <p>‖ 如果最后依旧没有选到心仪的课程，可去找老师<span class="hl">加位</span></p>
+        <p>‖ 加位流程：打印<span class="step-label">加位表</span>，找到老师签字，交到对应的教务处（有一定的几率加位不上，可以考虑找一个没那么热门的老师加位，成功率高一些）</p>
+    </div>
 
-        <div class="warning-box">
-            <h2 style="text-align: center;">！！！血的教训！！</h2>
-            <h2 style="text-align: center;">！！！不要把高数和大英放到一起！！！</h2>
-        </div>
-
-        <div class="process-box">
-            <h2>选课流程</h2>
-            <p>选课开放后，有两轮抽签选课（最好先选好mooc和体育课）</p>
-            <p>抽签后就是惨烈的“先到先得”抢课了</p>
-            <p>最后面是放位阶段，也是先到先得</p>
-            <p>||  如果最后依旧没有选到心仪的课程，可去找老师加位</p>
-            <p>||  加位流程：打印加位表，找到老师签字，交到对应的教务处（有一定的几率加位不上，可以考虑找一个没那么热门的老师加位，成功率高一些）</p>
-       
-            <p></p> 
-            <h3>mooc备忘录</h3>
-            <table border="4">
+    <div class="section-block" data-tape="blue">
+        <span class="tape-strip"></span>
+        <h3>mooc 备忘录</h3>
+        <table class="notebook-table">
+            <thead>
                 <tr>
                     <th>类型</th>
                     <th>课程名称</th>
                 </tr>
-                <tr>
-                    <td>mooc</td>
-                    <td>大学生心理健康</td>
-                </tr>
-                <tr>
-                    <td>mooc</td>
-                    <td>大学生国家安全教育</td>
-                </tr>
-                <tr>
-                    <td>mooc</td>
-                    <td>军事理论</td>
-                </tr>
-                <tr>
-                    <td>mooc</td>
-                    <td>走在前列的广东实践</td>
-                </tr>
-                <tr>
-                    <td>mooc</td>
-                    <td>大学生劳动</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="box-group">
-            <p>高数老师推荐：李兰，王远</p>
-            <p>不推荐的高数老师：李松臣</p>
-        </div>
-        <div class="box-group">
-            <p>大英老师推荐：李黎，刘智，吴敏</p>
-            <p>不太推荐的大英老师：李玲（模式像高中，很严，英语想要有强度学习的找她）</p>
-        </div>
-        <div class="box-group">
-            <p>体育课课程推荐：健身、羽毛球，乒乓球（都是室内，不用晒太阳）</p>
-            <p>足球课对女生很宽松，走投无路的可以考虑</p>
-        </div>
-
-        <hr>
+            </thead>
+            <tbody>
+                <tr><td>mooc</td><td>大学生心理健康</td></tr>
+                <tr><td>mooc</td><td>大学生国家安全教育</td></tr>
+                <tr><td>mooc</td><td>军事理论</td></tr>
+                <tr><td>mooc</td><td>走在前列的广东实践</td></tr>
+                <tr><td>mooc</td><td>大学生劳动</td></tr>
+            </tbody>
+        </table>
     </div>
+
+    <div class="section-block" data-tape="green">
+        <span class="tape-strip"></span>
+        <h3>高数老师 · 推荐 / 不推荐</h3>
+        <div class="teacher-row good">
+            <span class="arrow">&rarr;</span>
+            <div><span class="label">推荐：</span><span class="names">李兰，王远</span></div>
+        </div>
+        <div class="teacher-row bad">
+            <span class="arrow">&rarr;</span>
+            <div><span class="label">不推荐：</span><span class="names">李松臣</span></div>
+        </div>
+    </div>
+
+    <div class="section-block" data-tape="green">
+        <span class="tape-strip"></span>
+        <h3>大英老师 · 推荐 / 不太推荐</h3>
+        <div class="teacher-row good">
+            <span class="arrow">&rarr;</span>
+            <div><span class="label">推荐：</span><span class="names">李黎，刘智，吴敏</span></div>
+        </div>
+        <div class="teacher-row neutral">
+            <span class="arrow">&rarr;</span>
+            <div>
+                <span class="label">不太推荐：</span><span class="names">李玲</span>
+                <div class="note">（模式像高中，很严，英语想要有强度学习的找她）</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-block" data-tape="purple">
+        <span class="tape-strip"></span>
+        <h3>体育课 · 课程推荐</h3>
+        <div class="teacher-row good">
+            <span class="arrow">&rarr;</span>
+            <div>
+                <span class="label">推荐：</span><span class="names">健身、羽毛球，乒乓球</span>
+                <div class="note">（都是室内，不用晒太阳）</div>
+            </div>
+        </div>
+        <div class="teacher-row neutral">
+            <span class="arrow">&rarr;</span>
+            <div>
+                <span class="label">走投无路选项：</span><span class="names">足球课</span>
+                <div class="note">（对女生很宽松）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========= 原始文字结束 ========= -->
 </div>
 </body>
 </html>

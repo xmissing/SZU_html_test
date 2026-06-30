@@ -4,227 +4,127 @@
     <meta charset="UTF-8">
     <title>美食寻访 · 深大食堂指南</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/design-system.css">
     <style>
-        * {
-            margin: 0;
+        /* 页面专属：店家清单 */
+        .food-list {
+            margin: 0.4rem 0 0;
             padding: 0;
-            box-sizing: border-box;
+            list-style: none;
         }
-
-        body {
-            background: linear-gradient(145deg, #fdf8ed 0%, #f0e8d8 100%);
-            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 2rem 1rem;
-            line-height: 1.55;
-            color: #2c2418;
+        .food-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px dashed var(--line);
         }
-
-        .master-card {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fffef8;
-            border-radius: 48px;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+        .food-item:last-child { border-bottom: none; }
+        .food-item .star {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            flex-shrink: 0;
+            padding-top: 1px;
         }
-
-        .hero-deco {
-            background: linear-gradient(90deg, #c96f0e, #e8a53a, #f5c55c);
-            height: 10px;
-            width: 100%;
+        .food-item.good .star { color: var(--status-good); }
+        .food-item.bad  .star { color: var(--status-bad); }
+        .food-item.neutral .star { color: var(--status-neutral); }
+        .food-item .name {
+            font-weight: 500;
+            color: var(--ink);
         }
-
-        .content-core {
-            padding: 2rem 2.2rem 2.5rem;
-        }
-
-        /* 文字颜色 */
-        h1 {
-            text-align: center;
-            color: #b85c0a;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        h2 {
-            color: #c96f0e;
-            margin: 1.2rem 0 0.6rem;
-            border-left: 5px solid #f5b642;
-            padding-left: 1rem;
-        }
-
-        h3 {
-            color: #d47e1a;
-            margin: 0.8rem 0 0.3rem;
-            display: inline-block;
-            background: #fef5e8;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-size: 1.15rem;
-        }
-
-        h4 {
-            color: #b85c0a;
-            margin: 0.6rem 0 0.3rem;
-            font-size: 1rem;
-        }
-
-        p {
-            margin: 0.4rem 0 0.4rem 1rem;
-            color: #3a2e22;
-            line-height: 1.5;
-        }
-
-        /* 分组框 */
-        .campus-section {
-            background: #fefaf2;
-            border-radius: 28px;
-            padding: 0.6rem 1.5rem 1rem;
-            margin: 1.2rem 0;
-            border: 1px solid #f0e2cf;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .recommend-box {
-            background: #edf7e6;
-            border-left: 6px solid #4c9f38;
-            border-radius: 20px;
-            padding: 0.2rem 1.2rem;
-            margin: 0.6rem 0;
-        }
-
-        .neutral-box {
-            background: #fff7e0;
-            border-left: 6px solid #f5a623;
-            border-radius: 20px;
-            padding: 0.2rem 1.2rem;
-            margin: 0.6rem 0;
-        }
-
-        .avoid-box {
-            background: #fee8e8;
-            border-left: 6px solid #e74c3c;
-            border-radius: 20px;
-            padding: 0.2rem 1.2rem;
-            margin: 0.6rem 0;
-        }
-
-        .red-box {
-            background: #e8f0fe;
-            border-left: 6px solid #3b82f6;
-            border-radius: 20px;
-            padding: 0.2rem 1.2rem;
-            margin: 0.6rem 0;
-        }
-
-        .black-box {
-            background: #f0ece8;
-            border-left: 6px solid #7f8c8d;
-            border-radius: 20px;
-            padding: 0.2rem 1.2rem;
-            margin: 0.6rem 0;
-        }
-
-        hr {
-            margin: 1rem 0;
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #e8d8c0, transparent);
-        }
-
-        @media (max-width: 650px) {
-            .content-core {
-                padding: 1.2rem;
-            }
-            .campus-section {
-                padding: 0.4rem 1rem;
-            }
-            p {
-                margin-left: 0.5rem;
-            }
+        .food-item .note {
+            color: var(--ink-soft);
+            font-size: 0.88rem;
         }
     </style>
 </head>
 <body>
 <div class="master-card">
-    <div class="hero-deco"></div>
-    <div class="content-core">
-        <!-- ========= 以下为原始文字，一字未改 ========= -->
+    <div class="tape-deco-top"></div>
+
+    <div class="header-block">
         <h1>食堂推荐</h1>
-
-        <!-- 粤海校区 -->
-        <div class="campus-section">
-            <h2>粤海校区</h2>
-            
-            <div class="recommend-box">
-                <h3>推荐</h3>
-                <p> </p>
-                <p>荔天三楼（最推荐）</p>
-            </div>
-
-            <div class="neutral-box">
-                <h3>中立</h3>
-                <p>  </p>
-                <p>听山二楼（不推荐一直吃，会腻）</p>    
-                <p>听山三楼（味道不错，偏贵）</p>
-                <p>荔山餐厅（可以尝试，看个人口味）</p>
-            </div>
-
-            <div class="avoid-box">
-                <h3>避雷</h3>
-                <p>   </p>
-                <p>南区餐厅一楼</p>
-                <p>荔天二楼</p>
-                <p>实验餐厅</p>
-                <p>凯风餐厅</p>
-            </div>
-        </div>
-
-        <!-- 丽湖校区 -->
-        <div class="campus-section">
-            <h2>丽湖校区</h2>
-            
-            <div class="recommend-box">
-                <h3>推荐</h3>
-                <p>伐木二三楼（猪脚饭，擂椒拌饭，韩式烤肉拌饭，猪肚鸡，三及第）</p>
-                <p>伐木一楼（自选大众菜里的最优解）</p>
-            </div>
-
-            <div class="avoid-box">
-                <h3>避雷</h3>
-                <p>采葛（不太好吃，扒饭莫名的贵）</p>
-            </div>
-        </div>
-
-        <!-- 宵夜街 -->
-        <div class="campus-section">
-            <h2>宵夜街</h2>
-            <h3>粤海</h3>
-            <P>有2块宵夜街，一个在南区，一个在西南桥洞</p>
-                <div class="red-box">
-                <h4>推荐</h4>
-                <p>小西门的果切</p>
-                <p>西南桥洞的“大叔炒粉”</p>
-                
-            </div>
-            
-            <h3>丽湖</h3>
-            
-            <div class="red-box">
-                <h4>红榜</h4>
-                <p>卤肉卷饼，隆江猪脚饭，梅菜饼，肠粉</p>
-                <p>牛杂汤粉，自选螺蛳粉，10元自选糖水（周一八折）</p>
-                <p>南宁老友粉，咸蛋黄混沌，第一家烤鸡腿（2元烤肉肠）</p>
-            </div>
-
-            <div class="black-box">
-                <h4>黑榜</h4>
-                <p>各种炒粉等，最近的那家点心铺（都是预制的不好吃）</p>
-                <p>，福鼎肉片（个人认为不好吃，但每次能看到队好长）寿司自选，潮汕炸串</p>
-            </div>
-        </div>
-        <!-- ========= 原始文字结束 ========= -->
     </div>
+
+    <!-- ========= 以下为原始文字，一字未改 ========= -->
+
+    <!-- 粤海校区 -->
+    <div class="section-block" data-tape="blue">
+        <span class="tape-strip"></span>
+        <h3>粤海校区</h3>
+
+        <span class="status-bar status-good">推荐</span>
+        <ul class="food-list">
+            <li class="food-item good"><span class="star">&#9733;</span><span><span class="name">荔天三楼</span><span class="note">（最推荐）</span></span></li>
+        </ul>
+
+        <span class="status-bar status-neutral">中立</span>
+        <ul class="food-list">
+            <li class="food-item neutral"><span class="star">&#8226;</span><span><span class="name">听山二楼</span><span class="note">（不推荐一直吃，会腻）</span></span></li>
+            <li class="food-item neutral"><span class="star">&#8226;</span><span><span class="name">听山三楼</span><span class="note">（味道不错，偏贵）</span></span></li>
+            <li class="food-item neutral"><span class="star">&#8226;</span><span><span class="name">荔山餐厅</span><span class="note">（可以尝试，看个人口味）</span></span></li>
+        </ul>
+
+        <span class="status-bar status-bad">避雷</span>
+        <ul class="food-list">
+            <li class="food-item bad"><span class="star">&#10005;</span><span class="name">南区餐厅一楼</span></li>
+            <li class="food-item bad"><span class="star">&#10005;</span><span class="name">荔天二楼</span></li>
+            <li class="food-item bad"><span class="star">&#10005;</span><span class="name">实验餐厅</span></li>
+            <li class="food-item bad"><span class="star">&#10005;</span><span class="name">凯风餐厅</span></li>
+        </ul>
+    </div>
+
+    <!-- 丽湖校区 -->
+    <div class="section-block" data-tape="green">
+        <span class="tape-strip"></span>
+        <h3>丽湖校区</h3>
+
+        <span class="status-bar status-good">推荐</span>
+        <ul class="food-list">
+            <li class="food-item good"><span class="star">&#9733;</span><span><span class="name">伐木二三楼</span><span class="note">（猪脚饭，擂椒拌饭，韩式烤肉拌饭，猪肚鸡，三及第）</span></span></li>
+            <li class="food-item good"><span class="star">&#9733;</span><span><span class="name">伐木一楼</span><span class="note">（自选大众菜里的最优解）</span></span></li>
+        </ul>
+
+        <span class="status-bar status-bad">避雷</span>
+        <ul class="food-list">
+            <li class="food-item bad"><span class="star">&#10005;</span><span><span class="name">采葛</span><span class="note">（不太好吃，扒饭莫名的贵）</span></span></li>
+        </ul>
+    </div>
+
+    <!-- 宵夜街 -->
+    <div class="section-block" data-tape="purple">
+        <span class="tape-strip"></span>
+        <h3>宵夜街</h3>
+
+        <h4>📍 粤海</h4>
+        <p>有<span class="hl">2块</span>宵夜街，一个在<span class="step-label">南区</span>，一个在<span class="step-label">西南桥洞</span></p>
+        <span class="status-bar status-good">推荐</span>
+        <ul class="food-list">
+            <li class="food-item good"><span class="star">&#9733;</span><span class="name">小西门的果切</span></li>
+            <li class="food-item good"><span class="star">&#9733;</span><span class="name">西南桥洞的"大叔炒粉"</span></li>
+        </ul>
+
+        <h4 style="margin-top: 1rem;">📍 丽湖</h4>
+
+        <span class="status-bar status-good">红榜</span>
+        <ul class="food-list">
+            <li class="food-item good"><span class="star">&#9733;</span><span class="name">卤肉卷饼，隆江猪脚饭，梅菜饼，肠粉</span></li>
+            <li class="food-item good"><span class="star">&#9733;</span><span><span class="name">牛杂汤粉，自选螺蛳粉，10元自选糖水</span><span class="note">（周一八折）</span></span></li>
+            <li class="food-item good"><span class="star">&#9733;</span><span><span class="name">南宁老友粉，咸蛋黄混沌，第一家烤鸡腿</span><span class="note">（2元烤肉肠）</span></span></li>
+        </ul>
+
+        <span class="status-bar status-bad">黑榜</span>
+        <ul class="food-list">
+            <li class="food-item bad"><span class="star">&#10005;</span><span><span class="name">各种炒粉等，最近的那家点心铺</span><span class="note">（都是预制的不好吃）</span></span></li>
+            <li class="food-item bad"><span class="star">&#10005;</span><span><span class="name">福鼎肉片</span><span class="note">（个人认为不好吃，但每次能看到队好长）</span></span></li>
+            <li class="food-item bad"><span class="star">&#10005;</span><span class="name">寿司自选，潮汕炸串</span></li>
+        </ul>
+    </div>
+    <!-- ========= 原始文字结束 ========= -->
 </div>
 </body>
 </html>

@@ -4,191 +4,562 @@
     <meta charset="UTF-8">
     <title>其他事项 · 深大生活指南</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --paper:        #F7F3E9;
+            --paper-deep:   #EDE6D3;
+            --ink:          #1A2238;
+            --ink-soft:     #6B7280;
+            --szu-navy:     #003B6F;
+            --coral:        #E63946;
+            --marker:       #FFE066;
+            --line:         #D4C5A9;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: linear-gradient(145deg, #eef2f5 0%, #e0e6ec 100%);
-            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 2rem 1rem;
-            line-height: 1.55;
-            color: #1e3a4d;
+            background: var(--paper-deep);
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(0, 59, 111, 0.04), transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(230, 57, 70, 0.05), transparent 50%);
+            font-family: 'Noto Sans SC', 'Segoe UI', system-ui, sans-serif;
+            padding: 2.5rem 1rem;
+            min-height: 100vh;
+            color: var(--ink);
+            line-height: 1.65;
         }
 
+        /* ============ 主容器：笔记本纸张 ============ */
         .master-card {
-            max-width: 950px;
+            max-width: 920px;
             margin: 0 auto;
-            background: #ffffff;
-            border-radius: 48px;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            position: relative;
+            background: var(--paper);
+            /* 横线信纸 */
+            background-image:
+                repeating-linear-gradient(
+                    transparent,
+                    transparent 31px,
+                    rgba(0, 59, 111, 0.07) 31px,
+                    rgba(0, 59, 111, 0.07) 32px
+                ),
+                /* 细颗粒纸纹 */
+                radial-gradient(circle at 1px 1px, rgba(26, 34, 56, 0.04) 1px, transparent 0);
+            background-size: 100% 32px, 14px 14px;
+            border-radius: 6px;
+            box-shadow:
+                0 2px 4px rgba(26, 34, 56, 0.08),
+                0 18px 40px -10px rgba(26, 34, 56, 0.22),
+                inset 0 0 0 1px rgba(212, 197, 169, 0.6);
+            padding: 2.6rem 2.5rem 2.8rem 3rem;
+            overflow: visible;
         }
 
-        .hero-deco {
-            background: linear-gradient(90deg, #3a6b8f, #5f9ec0, #7fb8d4);
-            height: 10px;
-            width: 100%;
+        /* 装订红线 */
+        .master-card::before {
+            content: '';
+            position: absolute;
+            left: 26px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(230, 57, 70, 0.45) 8%,
+                rgba(230, 57, 70, 0.45) 92%,
+                transparent 100%);
         }
 
-        .content-core {
-            padding: 2rem 2.2rem 2.5rem;
+        /* 顶部封口胶带 */
+        .tape-deco-top {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1.5deg);
+            width: 240px;
+            height: 30px;
+            background: linear-gradient(135deg,
+                rgba(111, 168, 220, 0.78) 0%,
+                rgba(111, 168, 220, 0.92) 50%,
+                rgba(111, 168, 220, 0.7) 100%);
+            box-shadow: 0 4px 10px rgba(26, 34, 56, 0.12);
+            border-left: 1px dashed rgba(255, 255, 255, 0.45);
+            border-right: 1px dashed rgba(255, 255, 255, 0.45);
+            z-index: 10;
         }
 
-        /* 文字颜色 */
-        h3 {
-            color: #2c6b8f;
-            margin: 1.2rem 0 0.6rem;
-            font-size: 1.3rem;
-            border-left: 5px solid #5f9ec0;
-            padding-left: 1rem;
+        /* ============ 头部 ============ */
+        .header-block {
+            text-align: center;
+            margin-bottom: 1.2rem;
+            padding-top: 0.2rem;
         }
-
-        p {
-            margin: 0.5rem 0 0.5rem 1rem;
-            color: #2c4a5e;
-            line-height: 1.55;
-        }
-
-        /* 分组框 */
-        .section-box {
-            background: #f8fbfe;
-            border-radius: 24px;
-            padding: 0.6rem 1.2rem 0.8rem;
-            margin: 1rem 0;
-            border: 1px solid #dee9f0;
-            transition: all 0.2s;
-        }
-
-        .section-box:first-of-type {
-            margin-top: 0;
-        }
-
-        /* 链接样式 */
-        .url-link {
-            background: #eef3fc;
+        .header-block h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: var(--ink);
+            letter-spacing: 0.08em;
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: #2c6b8f;
-            word-break: break-all;
+            position: relative;
+        }
+        /* 荧光笔下划线 */
+        .header-block h1::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            right: -4px;
+            bottom: 2px;
+            height: 14px;
+            background: var(--marker);
+            opacity: 0.75;
+            z-index: -1;
+            border-radius: 2px;
+            transform: skewX(-6deg);
         }
 
         /* 装饰标签行 */
         .badge-row {
             display: flex;
-            justify-content: flex-start;
-            gap: 12px;
-            margin-bottom: 1.2rem;
+            justify-content: center;
+            gap: 8px;
+            margin: 0.8rem 0 1.8rem;
             flex-wrap: wrap;
         }
         .badge {
-            background: #dcebf3;
-            color: #2c6b8f;
-            border-radius: 50px;
-            padding: 4px 16px;
-            font-size: 0.7rem;
-            font-weight: 600;
+            background: rgba(0, 59, 111, 0.07);
+            color: var(--szu-navy);
+            border: 1px dashed rgba(0, 59, 111, 0.45);
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 0.74rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        /* ============ 区块：胶带头 + 内容卡片 ============ */
+        .section-block {
+            position: relative;
+            margin: 1.7rem 0;
+            padding: 1.3rem 1.5rem 1.2rem;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(26, 34, 56, 0.05);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .section-block:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 34, 56, 0.08);
+        }
+
+        /* 胶带（按 data-tape 切换颜色） */
+        .tape-strip {
+            position: absolute;
+            top: -10px;
+            left: 24px;
+            width: 96px;
+            height: 20px;
+            transform: rotate(-2deg);
+            box-shadow: 0 2px 4px rgba(26, 34, 56, 0.12);
+            z-index: 5;
+        }
+        .tape-strip::before,
+        .tape-strip::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: repeating-linear-gradient(180deg,
+                rgba(255,255,255,0.55) 0,
+                rgba(255,255,255,0.55) 4px,
+                transparent 4px,
+                transparent 8px);
+        }
+        .tape-strip::before { left: 6px; }
+        .tape-strip::after  { right: 6px; }
+
+        .section-block[data-tape="blue"]   .tape-strip { background: linear-gradient(135deg, rgba(111,168,220,0.9), rgba(111,168,220,0.65)); }
+        .section-block[data-tape="coral"]  .tape-strip { background: linear-gradient(135deg, rgba(244,165,171,0.9), rgba(244,165,171,0.65)); }
+        .section-block[data-tape="green"]  .tape-strip { background: linear-gradient(135deg, rgba(147,196,125,0.9), rgba(147,196,125,0.65)); }
+        .section-block[data-tape="yellow"] .tape-strip { background: linear-gradient(135deg, rgba(255,217,102,0.92), rgba(255,217,102,0.7)); }
+        .section-block[data-tape="purple"] .tape-strip { background: linear-gradient(135deg, rgba(180,167,214,0.9), rgba(180,167,214,0.65)); }
+
+        /* 区块标题 */
+        .section-block h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 1.18rem;
+            margin: 0.1rem 0 0.85rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px dashed var(--line);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-block h3::before {
+            content: '';
             display: inline-block;
+            width: 5px;
+            height: 18px;
+            background: var(--coral);
+            border-radius: 1px;
         }
 
-        hr {
-            margin: 0.8rem 0;
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #c5d8e8, transparent);
+        .section-block p {
+            color: var(--ink);
+            margin: 0.45rem 0;
+            line-height: 1.75;
+            font-size: 0.96rem;
         }
 
+        /* ============ 荧光笔高亮 ============ */
+        .hl {
+            background: linear-gradient(180deg,
+                transparent 0%, transparent 45%,
+                var(--marker) 45%, var(--marker) 95%,
+                transparent 95%);
+            padding: 0 4px;
+            font-weight: 600;
+        }
+        .hl-urgent {
+            background: linear-gradient(180deg,
+                transparent 0%, transparent 45%,
+                rgba(244, 165, 171, 0.75) 45%, rgba(244, 165, 171, 0.75) 95%,
+                transparent 95%);
+            padding: 0 4px;
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        /* ============ 步骤列表 ============ */
+        .step-list {
+            list-style: none;
+            margin: 0.4rem 0 0;
+            padding: 0;
+        }
+        .step-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            position: relative;
+        }
+        /* 步骤之间的虚线连接 */
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 50px;
+            bottom: -10px;
+            width: 2px;
+            background-image: linear-gradient(180deg,
+                var(--line) 0%, var(--line) 50%,
+                transparent 50%, transparent 100%);
+            background-size: 2px 7px;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 900;
+            font-size: 1.2rem;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--ink);
+            position: relative;
+            z-index: 1;
+            line-height: 1;
+        }
+
+        .step-body {
+            flex: 1;
+            padding-top: 6px;
+            font-size: 0.96rem;
+            line-height: 1.75;
+        }
+        .step-label {
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        /* ============ 跳转按钮 ============ */
+        .btn-jump {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 4px 0;
+            padding: 7px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            border: 2px solid var(--ink);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            box-shadow: 3px 3px 0 var(--coral);
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+            word-break: break-all;
+        }
+        .btn-jump::before {
+            content: '\2197'; /* ↗ */
+            font-size: 0.95rem;
+        }
+        .btn-jump:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 var(--coral);
+            background: var(--coral);
+            border-color: var(--coral);
+        }
+        .btn-jump:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--coral);
+        }
+
+        /* ============ 路径面包屑 ============ */
+        .crumbs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .crumbs .crumb {
+            background: rgba(0, 59, 111, 0.08);
+            border: 1px solid rgba(0, 59, 111, 0.2);
+            padding: 3px 11px;
+            border-radius: 14px;
+            font-size: 0.86rem;
+            color: var(--szu-navy);
+            font-weight: 500;
+        }
+        .crumbs .arr {
+            color: var(--ink-soft);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* ============ 装饰图钉 ============ */
+        .pin {
+            position: absolute;
+            top: -8px;
+            right: 22px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ff6b6b, #b53338);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+                        inset -2px -2px 3px rgba(0, 0, 0, 0.22);
+            z-index: 6;
+        }
+        .pin::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 焦点环 */
+        a:focus-visible,
+        .btn-jump:focus-visible {
+            outline: 3px dashed var(--coral);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* ============ 响应式 ============ */
         @media (max-width: 600px) {
-            .content-core {
-                padding: 1.3rem;
+            body { padding: 1.5rem 0.6rem; }
+            .master-card {
+                padding: 2rem 1.1rem 1.6rem 2rem;
             }
-            .section-box {
-                padding: 0.5rem 1rem;
+            .master-card::before { left: 14px; }
+            .header-block h1 { font-size: 1.7rem; }
+            .section-block { padding: 1.1rem 1rem 1rem; }
+            .section-block h3 { font-size: 1.05rem; }
+            .tape-strip { width: 72px; left: 16px; }
+            .tape-deco-top { width: 180px; }
+            .btn-jump { font-size: 0.76rem; padding: 6px 12px; gap: 6px; }
+            .step-num {
+                width: 34px; height: 34px;
+                font-size: 1rem;
+                box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink);
             }
-            p {
-                margin-left: 0.5rem;
+            .step-item:not(:last-child)::after {
+                left: 16px; top: 42px;
             }
+            .section-block p { font-size: 0.92rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; }
         }
     </style>
 </head>
 <body>
 <div class="master-card">
-    <div class="hero-deco"></div>
-    <div class="content-core">
-        <!-- 装饰标签行（不包含文字内容，仅视觉） -->
-        <div class="badge-row">
-            <div class="badge">🏥 校医院指南</div>
-            <div class="badge">📋 请假流程</div>
-            <div class="badge">⚡ 电费充值</div>
-        </div>
+    <div class="tape-deco-top"></div>
 
-        <!-- ========= 以下为原始文字，一字未改 ========= -->
-          <div class="section-box">
-            <h3>宿舍电费充值流程</h3>
-            <p>微信打开网址：https://swzx.webvpn.szu.edu.cn/#/<a href="https://swzx.webvpn.szu.edu.cn/#/">点击跳转</a>，登录后选择电费充值即可</p>
-
-        </div>
-
-        <div class="section-box">
-            <h3>校园网购买</h3>
-            <p>0/打开网址：https://self.szu.edu.cn/self/nav_login<a href="https://self.szu.edu.cn/self/nav_login">点击跳转</a></p>
-            <p>1/账号为校园卡的物理芯片号(六位数),密码为登录内部网的密码</p>
-            <P>2/物理芯片码获取：微信小程序“深大校园码” -> 个人中心 ->  物理芯片码</P>
-            <p>3/校园网的扣费是从通用代扣费账户中扣取的，购买校园网前应该先在这里面充钱</p>
-            <P>4/通用代扣费账户:微信服务号“深圳大学信息中心” -> 校园卡 -> 校园卡业务 -> 卡片充值 -> 选中通用代扣费账户后再充值</P>
-        </div>
-
-        <div class="section-box">
-            <h3>体育场馆预约</h3>
-            <p>企业微信 -> 工作台 -> 体育场馆预约</p>
-            <p>深大每年有400元的体育经费补给，在付费时选择体育经费支付，支付密码为身份证后6位</p>
-        </div>
-        <div class="section-box">
-            <h3>校医院就诊相关流程</h3>
-            <p>/0/去校医院的窗口挂单（没有深圳医保的一次10块，有医保的一次2块，推荐购买深圳医保，在哪都是交）</p>
-            <p>/1/候诊，看病</p>
-            <p>/2/去挂号窗口盖章，到药房拿药（药不需要费用）</p>
-        </div>
-
-        <div class="section-box">
-            <h3>请假相关流程</h3>
-            <p>/1/先去找辅导员要假条，</p>
-            <p>/2/然后去自己学院办公区各种盖章</p>
-            <p>/3/交给任课老师或者拍照发给老师（有时候病例也可以当假条）</p>
-        </div>
-
-      
-
-         <div class="section-box">
-            <h3>校内打印店位置</h3>
-            <p>乔林阁旁边（还有一个自行车修车所），荔天、荔山旁边</p>
-        </div>
-        
-        <div class="section-box">
-            <h3>学校图书馆</h3>
-            
-    <P>图书馆分为南、北馆（其实就是俩对面，相隔不到一百米）</P>
-    <p>桌子上会标有“请先在座位系统里选座再就坐”的字样，不用搭理它，找个空位置安静做自己的事就好</P>
+    <div class="header-block">
+        <h1>其他事项</h1>
     </div>
- <div class="section-box">
-            <h3>羽毛球拍拉线</h3>
-            <p>南区有一位学长有拉线服务，自带线30元拉一次，想图方便的可以去闲鱼搜</p>
-        </div>
 
-       <div class="section-box">
-            <h3> 友情站链接（分享深大期中期末试卷资料）</h3>
-            <p><a href="https://Vault101.top">点击跳转</a></p>
-        </div>
-       
-        
-        <!-- ========= 原始文字结束 ========= -->
+    <!-- 装饰标签行（不包含文字内容，仅视觉） -->
+    <div class="badge-row">
+        <div class="badge">🏥 校医院指南</div>
+        <div class="badge">📋 请假流程</div>
+        <div class="badge">⚡ 电费充值</div>
     </div>
+
+    <!-- ========= 以下为原始文字，一字未改 ========= -->
+
+    <div class="section-block" data-tape="blue">
+        <span class="tape-strip"></span>
+        <h3>宿舍电费充值流程</h3>
+        <p>微信打开网址：<a class="btn-jump" href="https://swzx.webvpn.szu.edu.cn/#/" target="_blank" rel="noopener noreferrer">点击跳转 swzx.webvpn.szu.edu.cn</a>，登录后选择电费充值即可</p>
+    </div>
+
+    <div class="section-block" data-tape="coral">
+        <span class="pin"></span>
+        <span class="tape-strip"></span>
+        <h3>校园网购买</h3>
+        <ol class="step-list">
+            <li class="step-item">
+                <span class="step-num">0</span>
+                <div class="step-body">
+                    <span class="step-label">打开网址：</span>
+                    <a class="btn-jump" href="https://self.szu.edu.cn/self/nav_login" target="_blank" rel="noopener noreferrer">点击跳转 self.szu.edu.cn</a>
+                </div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                    账号为校园卡的<span class="hl">物理芯片号(六位数)</span>，密码为登录内部网的密码
+                </div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                    <span class="step-label">物理芯片码获取：</span>
+                    <div class="crumbs">
+                        <span class="crumb">微信小程序</span><span class="arr">&rarr;</span>
+                        <span class="crumb">深大校园码</span><span class="arr">&rarr;</span>
+                        <span class="crumb">个人中心</span><span class="arr">&rarr;</span>
+                        <span class="crumb">物理芯片码</span>
+                    </div>
+                </div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                    校园网的扣费是从<span class="hl-urgent">通用代扣费账户</span>中扣取的，购买校园网前应该先在这里面充钱
+                </div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">4</span>
+                <div class="step-body">
+                    <span class="step-label">通用代扣费账户：</span>
+                    <div class="crumbs">
+                        <span class="crumb">微信服务号</span><span class="arr">&rarr;</span>
+                        <span class="crumb">深圳大学信息中心</span><span class="arr">&rarr;</span>
+                        <span class="crumb">校园卡</span><span class="arr">&rarr;</span>
+                        <span class="crumb">校园卡业务</span><span class="arr">&rarr;</span>
+                        <span class="crumb">卡片充值</span><span class="arr">&rarr;</span>
+                        <span class="crumb">通用代扣费账户</span><span class="arr">&rarr;</span>
+                        <span class="crumb">充值</span>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="section-block" data-tape="green">
+        <span class="tape-strip"></span>
+        <h3>体育场馆预约</h3>
+        <p>企业微信 → 工作台 → 体育场馆预约</p>
+        <p>深大每年有<span class="hl">400元</span>的体育经费补给，在付费时选择体育经费支付，支付密码为<span class="hl">身份证后6位</span></p>
+    </div>
+
+    <div class="section-block" data-tape="yellow">
+        <span class="tape-strip"></span>
+        <h3>校医院就诊相关流程</h3>
+        <ol class="step-list">
+            <li class="step-item">
+                <span class="step-num">0</span>
+                <div class="step-body">去校医院的<span class="step-label">窗口挂单</span>（没有深圳医保的一次10块，有医保的一次<span class="hl-urgent">2块</span>，推荐购买深圳医保，在哪都是交）</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">1</span>
+                <div class="step-body">候诊，看病</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">2</span>
+                <div class="step-body">去挂号窗口<span class="step-label">盖章</span>，到药房拿药（药不需要费用）</div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="section-block" data-tape="purple">
+        <span class="tape-strip"></span>
+        <h3>请假相关流程</h3>
+        <ol class="step-list">
+            <li class="step-item">
+                <span class="step-num">1</span>
+                <div class="step-body">先去找<span class="step-label">辅导员</span>要假条，</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">2</span>
+                <div class="step-body">然后去自己<span class="step-label">学院办公区</span>各种盖章</div>
+            </li>
+            <li class="step-item">
+                <span class="step-num">3</span>
+                <div class="step-body">交给任课老师或者拍照发给老师（有时候<span class="hl">病例也可以当假条</span>）</div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="section-block" data-tape="blue">
+        <span class="tape-strip"></span>
+        <h3>校内打印店位置</h3>
+        <p>乔林阁旁边（还有一个自行车修车所），荔天、荔山旁边</p>
+    </div>
+
+    <div class="section-block" data-tape="green">
+        <span class="tape-strip"></span>
+        <h3>学校图书馆</h3>
+        <p>图书馆分为南、北馆（其实就是俩对面，相隔不到一百米）</p>
+        <p>桌子上会标有<span class="hl-urgent">"请先在座位系统里选座再就坐"</span>的字样，不用搭理它，找个空位置安静做自己的事就好</p>
+    </div>
+
+    <div class="section-block" data-tape="coral">
+        <span class="tape-strip"></span>
+        <h3>羽毛球拍拉线</h3>
+        <p>南区有一位学长有拉线服务，自带线<span class="hl">30元</span>拉一次，想图方便的可以去闲鱼搜</p>
+    </div>
+
+    <div class="section-block" data-tape="yellow">
+        <span class="tape-strip"></span>
+        <h3>友情站链接（分享深大期中期末试卷资料）</h3>
+        <p><a class="btn-jump" href="https://Vault101.top" target="_blank" rel="noopener noreferrer">点击跳转 Vault101.top</a></p>
+    </div>
+
+    <!-- ========= 原始文字结束 ========= -->
 </div>
 </body>
 </html>

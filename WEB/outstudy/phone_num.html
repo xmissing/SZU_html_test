@@ -2,155 +2,276 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>常用电话汇总</title>
+    <title>常用电话汇总 · 深大指南</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/design-system.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(145deg, #e8ecf0 0%, #d5dce3 100%);
-            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 2rem 1rem;
-            line-height: 1.55;
-            min-height: 100vh;
-        }
-
-        .master-card {
-            max-width: 850px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 48px;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .hero-deco {
-            background: linear-gradient(90deg, #2c6b8f, #5f9ec0, #7fb8d4);
-            height: 10px;
-            width: 100%;
-        }
-
-        .content-core {
-            padding: 2rem 2.2rem 2.5rem;
-        }
-
-        /* 标题样式 */
-        .page-title {
-            text-align: center;
-            color: #2c6b8f;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #e8eef4;
-        }
-
-        /* 电话列表容器 */
-        .phone-list {
+        /* 页面专属：电话卡片网格 */
+        .phone-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px 20px;
-            margin-top: 0.5rem;
+            gap: 10px;
+            margin-top: 0.6rem;
         }
 
-        .phone-item {
-            background: #f6f9fc;
-            border-radius: 16px;
-            padding: 0.6rem 1rem;
-            border: 1px solid #e4ebf2;
-            transition: all 0.2s;
+        /* 改为 button 元素后的样式重置 */
+        .phone-card {
             display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: inherit;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s, border-color 0.15s;
+            position: relative;
+        }
+        .phone-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--szu-navy);
+            border-radius: 4px 0 0 4px;
+            opacity: 0.6;
+            transition: opacity 0.15s, background 0.15s;
+        }
+        .phone-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(26, 34, 56, 0.08);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .phone-card:hover::before { opacity: 1; background: var(--coral); }
+        .phone-card:active {
+            transform: translateY(0);
+        }
+        .phone-card:focus-visible {
+            outline: 3px dashed var(--coral);
+            outline-offset: 2px;
+        }
+
+        .phone-idx {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+            color: var(--szu-navy);
+            font-size: 0.86rem;
+            flex-shrink: 0;
+            min-width: 22px;
+        }
+        .phone-label {
+            flex: 1;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .phone-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--szu-navy);
+            letter-spacing: 0.02em;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
         }
+        /* 复制图标 */
+        .copy-icon {
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            opacity: 0.5;
+            transition: opacity 0.15s, color 0.15s;
+        }
+        .phone-card:hover .copy-icon { opacity: 1; color: var(--coral); }
 
-        .phone-item:hover {
-            background: #eef3fc;
-            border-color: #5f9ec0;
+        /* 复制成功的反馈态 */
+        .phone-card.copied {
+            background: rgba(147, 196, 125, 0.18);
+            border-color: var(--status-good);
+        }
+        .phone-card.copied::before {
+            background: var(--status-good);
+            opacity: 1;
+        }
+        .phone-card.copied .phone-num {
+            color: var(--status-good);
+        }
+        .phone-card.copied .copy-icon {
+            opacity: 1;
+            color: var(--status-good);
+        }
+        .phone-card.error .phone-num {
+            color: var(--status-bad);
         }
 
-        .phone-item .label {
-            color: #3a6b8f;
-            font-weight: 500;
-        }
-
-        .phone-item .number {
-            color: #1e4a6f;
-            font-weight: 600;
-            font-family: 'Consolas', 'Courier New', monospace;
-            margin-left: auto;
-            letter-spacing: 0.5px;
-        }
-
-        /* 装饰标签行 */
-        .badge-row {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
-        }
-        .badge {
-            background: #dcebf3;
-            color: #2c6b8f;
-            border-radius: 50px;
-            padding: 4px 16px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        @media (max-width: 650px) {
-            .content-core {
-                padding: 1.5rem;
-            }
-            .phone-list {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
-            .phone-item {
-                padding: 0.5rem 0.8rem;
-            }
+        @media (max-width: 600px) {
+            .phone-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 <div class="master-card">
-    <div class="hero-deco"></div>
-    <div class="content-core">
-        <!-- 装饰标签行 -->
-        <div class="badge-row">
-            <div class="badge">📞 深大常用电话</div>
-            <div class="badge">🏫 粤海校区</div>
-         
-        </div>
+    <div class="tape-deco-top"></div>
 
-        <!-- ========= 以下为原始文字，一字未改 ========= -->
-        <div class="page-title">常用电话汇总</div>
-
-        <div class="phone-list">
-            <div class="phone-item"><span class="label">1. 校医院：</span><span class="number">26537163</span></div>
-            <div class="phone-item"><span class="label">2. 值班室：</span><span class="number">26534058</span></div>
-            <div class="phone-item"><span class="label">3. 消杀中心：</span><span class="number">26537189</span></div>
-            <div class="phone-item"><span class="label">4. 治安科：</span><span class="number">26537119</span></div>
-            <div class="phone-item"><span class="label">5. 移动报修：</span><span class="number">18476328678</span></div>
-            <div class="phone-item"><span class="label">6. 宿舍报修：</span><span class="number">26732006</span></div>
-            <div class="phone-item"><span class="label">7. 宿舍调整：</span><span class="number">26537141</span></div>
-            <div class="phone-item"><span class="label">8. 电费查询：</span><span class="number">26537164</span></div>
-            <div class="phone-item"><span class="label">9. 空调报修：</span><span class="number">26732006</span></div>
-            <div class="phone-item"><span class="label">10. 电信报修：</span><span class="number">26414134</span></div>
-            <div class="phone-item"><span class="label">11. 读卡器：</span><span class="number">26535339</span></div>
-            <div class="phone-item"><span class="label">12. 热水供应：</span><span class="number">26732006</span></div>
-            <div class="phone-item"><span class="label">13. 园林报修：</span><span class="number">26534179</span></div>
-            <div class="phone-item"><span class="label">14. 门禁报修：</span><span class="number">18718677020</span></div>
-            <div class="phone-item"><span class="label">15. 电梯报修：</span><span class="number">26732006</span></div>
-        </div>
-        <!-- ========= 原始文字结束 ========= -->
+    <div class="header-block">
+        <h1>常用电话汇总</h1>
     </div>
+
+    <!-- 装饰标签行 -->
+    <div class="badge-row">
+        <div class="badge">📞 深大常用电话</div>
+        <div class="badge">🏫 粤海校区</div>
+        <div class="badge">📋 点击复制</div>
+    </div>
+
+    <!-- 顶部提示条 -->
+    <div class="section-block" data-tape="blue" style="padding: 0.7rem 1.2rem;">
+        <span class="tape-strip"></span>
+        <p style="margin: 0; font-family: 'Noto Serif SC', serif; font-style: italic; color: var(--ink-soft); text-align: center;">
+            💡 点击任意电话卡片即可复制号码
+        </p>
+    </div>
+
+    <!-- ========= 以下为原始文字，一字未改 ========= -->
+    <div class="section-block" data-tape="blue">
+        <h3>粤海校区电话簿</h3>
+        <div class="phone-grid">
+            <button class="phone-card" data-num="26537163" aria-label="复制电话 26537163 校医院"><span class="phone-idx">1.</span><span class="phone-label">校医院</span><span class="phone-num">26537163<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26534058" aria-label="复制电话 26534058 值班室"><span class="phone-idx">2.</span><span class="phone-label">值班室</span><span class="phone-num">26534058<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26537189" aria-label="复制电话 26537189 消杀中心"><span class="phone-idx">3.</span><span class="phone-label">消杀中心</span><span class="phone-num">26537189<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26537119" aria-label="复制电话 26537119 治安科"><span class="phone-idx">4.</span><span class="phone-label">治安科</span><span class="phone-num">26537119<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="18476328678" aria-label="复制电话 18476328678 移动报修"><span class="phone-idx">5.</span><span class="phone-label">移动报修</span><span class="phone-num">18476328678<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26732006" aria-label="复制电话 26732006 宿舍报修"><span class="phone-idx">6.</span><span class="phone-label">宿舍报修</span><span class="phone-num">26732006<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26537141" aria-label="复制电话 26537141 宿舍调整"><span class="phone-idx">7.</span><span class="phone-label">宿舍调整</span><span class="phone-num">26537141<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26537164" aria-label="复制电话 26537164 电费查询"><span class="phone-idx">8.</span><span class="phone-label">电费查询</span><span class="phone-num">26537164<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26732006" aria-label="复制电话 26732006 空调报修"><span class="phone-idx">9.</span><span class="phone-label">空调报修</span><span class="phone-num">26732006<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26414134" aria-label="复制电话 26414134 电信报修"><span class="phone-idx">10.</span><span class="phone-label">电信报修</span><span class="phone-num">26414134<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26535339" aria-label="复制电话 26535339 读卡器"><span class="phone-idx">11.</span><span class="phone-label">读卡器</span><span class="phone-num">26535339<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26732006" aria-label="复制电话 26732006 热水供应"><span class="phone-idx">12.</span><span class="phone-label">热水供应</span><span class="phone-num">26732006<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26534179" aria-label="复制电话 26534179 园林报修"><span class="phone-idx">13.</span><span class="phone-label">园林报修</span><span class="phone-num">26534179<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="18718677020" aria-label="复制电话 18718677020 门禁报修"><span class="phone-idx">14.</span><span class="phone-label">门禁报修</span><span class="phone-num">18718677020<span class="copy-icon">⧉</span></span></button>
+            <button class="phone-card" data-num="26732006" aria-label="复制电话 26732006 电梯报修"><span class="phone-idx">15.</span><span class="phone-label">电梯报修</span><span class="phone-num">26732006<span class="copy-icon">⧉</span></span></button>
+        </div>
+    </div>
+    <!-- ========= 原始文字结束 ========= -->
 </div>
+
+<script>
+(function () {
+    'use strict';
+
+    // 复制到剪贴板（含 file:// 协议降级方案）
+    function copyToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+        }
+        // 降级方案：临时 textarea + execCommand
+        return new Promise(function (resolve, reject) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.top = '0';
+            ta.style.left = '0';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                var ok = document.execCommand('copy');
+                document.body.removeChild(ta);
+                ok ? resolve() : reject(new Error('execCommand failed'));
+            } catch (e) {
+                document.body.removeChild(ta);
+                reject(e);
+            }
+        });
+    }
+
+    // 简单的全局 toast
+    function showToast(msg, isError) {
+        var existing = document.getElementById('copy-toast');
+        if (existing) existing.remove();
+        var toast = document.createElement('div');
+        toast.id = 'copy-toast';
+        toast.textContent = msg;
+        toast.style.cssText = [
+            'position: fixed',
+            'left: 50%',
+            'bottom: 32px',
+            'transform: translateX(-50%)',
+            'padding: 10px 20px',
+            'background: ' + (isError ? '#d94436' : '#1A2238'),
+            'color: #F7F3E9',
+            'border-radius: 24px',
+            'font-family: \'Noto Sans SC\', system-ui, sans-serif',
+            'font-size: 0.92rem',
+            'font-weight: 500',
+            'box-shadow: 0 6px 20px rgba(0,0,0,0.25)',
+            'z-index: 9999',
+            'opacity: 0',
+            'transition: opacity 0.18s ease, transform 0.18s ease',
+            'pointer-events: none'
+        ].join(';');
+        document.body.appendChild(toast);
+        requestAnimationFrame(function () {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) translateY(-4px)';
+        });
+        setTimeout(function () {
+            toast.style.opacity = '0';
+            setTimeout(function () { toast.remove(); }, 200);
+        }, 1500);
+    }
+
+    function flashCopied(card, num) {
+        var numSpan = card.querySelector('.phone-num');
+        var copyIcon = card.querySelector('.copy-icon');
+        var originalHTML = numSpan.innerHTML;
+
+        // 第一段反馈：号码变 ✓ 已复制
+        card.classList.add('copied');
+        numSpan.innerHTML = '✓ 已复制';
+        showToast('✓ 已复制 ' + num, false);
+
+        // 第二段反馈：短暂显示原号码
+        setTimeout(function () {
+            numSpan.innerHTML = num + ' <span class="copy-icon">⧉</span>';
+        }, 1200);
+
+        // 完全恢复
+        setTimeout(function () {
+            card.classList.remove('copied');
+            numSpan.innerHTML = originalHTML;
+        }, 1800);
+    }
+
+    function flashError(card) {
+        card.classList.add('error');
+        setTimeout(function () { card.classList.remove('error'); }, 1500);
+        showToast('✕ 复制失败，请手动选择', true);
+    }
+
+    document.querySelectorAll('.phone-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+            var num = card.getAttribute('data-num');
+            if (!num) return;
+            copyToClipboard(num).then(function () {
+                flashCopied(card, num);
+            }).catch(function () {
+                flashError(card);
+            });
+        });
+    });
+})();
+</script>
 </body>
 </html>
